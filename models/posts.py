@@ -2,7 +2,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey
 from sqlalchemy import text
 from database import Base, unique_info
-from enum import Gender, ProfessionEnum, StatusPost
+from enumsql import Gender, ProfessionEnum, StatusPost
 class Posts(Base):
     __tablename__ = 'posts'
 

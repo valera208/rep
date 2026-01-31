@@ -13,9 +13,8 @@ class Settings(BaseSettings):
     )
 
     def get_db_by_url(self):
-        return (f"postgres+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}@"
+        return (f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}@"
                 f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}")
 
 
 settings = Settings()
-settings2 = Settings()
