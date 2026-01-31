@@ -4,6 +4,7 @@ from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy import text
 from database import Base, unique_info
 from enumsql import Gender, ProfessionEnum, StatusPost
+# from models.users import Users
 
 
 class Profiles(Base):

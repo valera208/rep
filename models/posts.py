@@ -3,6 +3,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import text
 from database import Base, unique_info
 from enumsql import Gender, ProfessionEnum, StatusPost
+# from models.users import Users
 class Posts(Base):
     __tablename__ = 'posts'
 

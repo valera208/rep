@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
+# from models.profiles import Profiles
+# from models.posts import Posts
 from database import Base, unique_info
 
 
