@@ -6,7 +6,6 @@ from database import Base, unique_info
 from enumsql import Gender, ProfessionEnum, StatusPost
 # from models.users import Users
 
-
 class Profiles(Base):
     __tablename__ = 'profiles'
     user_id: Mapped[int | None] = mapped_column(ForeignKey('users.id'))

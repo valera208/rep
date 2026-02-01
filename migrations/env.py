@@ -8,7 +8,6 @@ from alembic import context
 from database import Base  # твой Base
 from models.users import Users
 from models.posts import Posts
-
 from models.profiles import Profiles
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

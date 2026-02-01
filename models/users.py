@@ -7,7 +7,7 @@ from database import Base, unique_info
 class Users(Base):
     __tablename__ = 'users'
 
-    name: Mapped[unique_info] = mapped_column(nullable=False)
+    username: Mapped[unique_info] = mapped_column(nullable=False)
 
     profile: Mapped["Profiles"] = relationship(
         "Profiles",
