@@ -1,7 +1,7 @@
 from config import settings
 from sqlalchemy import Integer, func
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, class_mapper
 from datetime import datetime
 from typing import Annotated
 DB_URL = settings.get_db_by_url()
@@ -18,6 +18,10 @@ class Base(AsyncAttrs, DeclarativeBase):
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), server_onupdate=func.now())
 
+    def to_dict(self) -> dict:
+        columns = class_mapper(self.__class__).columns
+        return {column.key: getattr(self, column.key) for column in columns}
+
 unique_info = Annotated[str, mapped_column(unique=True)]
 
 def connection(method):
@@ -31,3 +35,5 @@ def connection(method):
             finally:
                 await session.close()
     return wrapper
+
+

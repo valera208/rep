@@ -1,3 +1,4 @@
+
 from models.users import Users
 from models.posts import Posts
 from models.profiles import Profiles
@@ -5,6 +6,8 @@ from .base import BaseDAO
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import select
+
 
 
 class UserDAO(BaseDAO):
@@ -31,6 +34,23 @@ class UserDAO(BaseDAO):
             await session.rollback()
             raise Er
         return new_user
+
+    @classmethod
+    async def get_all_users(cls, session: AsyncSession):
+        query = select(cls.model)
+        rez = await session.execute(query)
+        records = rez.scalars().all()
+        return records
+
+
+    @classmethod
+    async def get_users_with_id_and_username(cls, session: AsyncSession):
+        query = select(cls.model.id, cls.model.username)
+        print(query)
+        rez = await session.execute(query)
+        records = rez.all()
+        return records
+
 
 
 class ProfileDAO(BaseDAO):
